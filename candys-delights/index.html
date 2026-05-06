@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Candy's Delights — Homemade Dessert Recipes</title>
+  <meta name="description" content="Handcrafted dessert recipes by Candy — mochi, cookies, muffins, mango pudding and more." />
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Favicon emoji -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍬</text></svg>" />
+</head>
+<body>
+
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+  <a href="index.html" class="nav-brand" aria-label="Candy's Delights home">
+    <span class="script">Candy's Delights</span>
+    <span class="tagline">Homemade with love</span>
+  </a>
+
+  <ul class="nav-links" role="list">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Candy</a></li>
+    <li><a href="mochi.html">Mochi</a></li>
+    <li><a href="cookies.html">Cookies</a></li>
+    <li><a href="muffins.html">Muffins</a></li>
+    <li><a href="mango-pudding.html">Mango Pudding</a></li>
+  </ul>
+
+  <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile drawer -->
+<div class="nav-drawer" role="dialog" aria-label="Mobile menu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About Candy</a>
+  <a href="mochi.html">Mochi</a>
+  <a href="cookies.html">Cookies</a>
+  <a href="muffins.html">Muffins</a>
+  <a href="mango-pudding.html">Mango Pudding</a>
+</div>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero" aria-label="Hero section">
+  <div class="hero-bg">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">✦ &nbsp;Sweet Handmade Creations</div>
+    <h1 class="hero-title">
+      Welcome to
+      <em>Candy's Delights</em>
+    </h1>
+    <p class="hero-sub">
+      Discover the joy of homemade desserts — crafted with love, shared with warmth. 
+      From silky mochi to golden-edged cookies, every recipe tells a sweet story.
+    </p>
+    <div class="hero-cta">
+      <a href="#recipes" class="btn btn-primary">Explore Recipes</a>
+      <a href="about.html" class="btn btn-outline">Meet Candy</a>
+    </div>
+  </div>
+
+  <!-- Floating dessert cards (decorative) -->
+  <div class="hero-art" aria-hidden="true">
+    <div class="hero-art-card">🍡<p>Mochi</p></div>
+    <div class="hero-art-card">🍪<p>Cookies</p></div>
+    <div class="hero-art-card">🧁<p>Muffins</p></div>
+    <div class="hero-art-card">🍮<p>Pudding</p></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MARQUEE STRIP
+     ============================================================ -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <!-- duplicated for seamless loop -->
+    <span>Homemade Recipes</span><span class="dot">✦</span>
+    <span>Baked with Love</span><span class="dot">✦</span>
+    <span>Fresh Ingredients</span><span class="dot">✦</span>
+    <span>Sweet Moments</span><span class="dot">✦</span>
+    <span>Candy's Kitchen</span><span class="dot">✦</span>
+    <span>Artisan Desserts</span><span class="dot">✦</span>
+    <span>Homemade Recipes</span><span class="dot">✦</span>
+    <span>Baked with Love</span><span class="dot">✦</span>
+    <span>Fresh Ingredients</span><span class="dot">✦</span>
+    <span>Sweet Moments</span><span class="dot">✦</span>
+    <span>Candy's Kitchen</span><span class="dot">✦</span>
+    <span>Artisan Desserts</span><span class="dot">✦</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     FEATURED RECIPES
+     ============================================================ -->
+<section class="featured" id="recipes">
+  <div class="container">
+    <div class="featured-header fade-up">
+      <div>
+        <div class="section-label">Our Specialties</div>
+        <h2 class="section-heading">
+          Recipes Made to<br><em>Delight</em>
+        </h2>
+      </div>
+      <p class="section-sub">
+        Each recipe is tested, tasted, and perfected in Candy's kitchen — 
+        ready for you to recreate at home.
+      </p>
+    </div>
+
+    <div class="recipe-grid">
+
+      <!-- Mochi Card -->
+      <article class="recipe-card fade-up delay-1">
+        <a href="mochi.html" class="recipe-card-img">
+          <div class="img-placeholder" style="background: linear-gradient(135deg,#fce8ec,#f9d4b8);">
+            🍡
+            <span>Japanese Mochi</span>
+          </div>
+        </a>
+        <div class="recipe-card-body">
+          <div class="recipe-card-tag">Japanese · Gluten-Free</div>
+          <h3 class="recipe-card-title">Strawberry Mochi</h3>
+          <p class="recipe-card-desc">
+            Pillowy soft rice cakes with a luscious strawberry filling — 
+            a delicate balance of chewy and sweet.
+          </p>
+          <div class="recipe-meta">
+            <span>⏱ 45 min</span>
+            <span>🍽 12 pieces</span>
+            <span>⭐ Easy</span>
+          </div>
+          <a href="mochi.html" class="btn btn-ghost">View Recipe </a>
+        </div>
+      </article>
+
+      <!-- Cookies Card -->
+      <article class="recipe-card fade-up delay-2">
+        <a href="cookies.html" class="recipe-card-img">
+          <div class="img-placeholder" style="background: linear-gradient(135deg,#f5ece3,#e8d9cc);">
+            🍪
+            <span>Brown Butter Cookies</span>
+          </div>
+        </a>
+        <div class="recipe-card-body">
+          <div class="recipe-card-tag">Baked · Classic</div>
+          <h3 class="recipe-card-title">Brown Butter Chocolate Chip Cookies</h3>
+          <p class="recipe-card-desc">
+            Crispy edges, gooey centres, and a deep nutty richness from browned butter 
+            that elevates every bite.
+          </p>
+          <div class="recipe-meta">
+            <span>⏱ 30 min</span>
+            <span>🍽 24 cookies</span>
+            <span>⭐ Easy</span>
+          </div>
+          <a href="cookies.html" class="btn btn-ghost">View Recipe </a>
+        </div>
+      </article>
+
+      <!-- Muffins Card -->
+      <article class="recipe-card fade-up delay-3">
+        <a href="muffins.html" class="recipe-card-img">
+          <div class="img-placeholder" style="background: linear-gradient(135deg,#fef0e7,#fce8ec);">
+            🧁
+            <span>Blueberry Muffins</span>
+          </div>
+        </a>
+        <div class="recipe-card-body">
+          <div class="recipe-card-tag">Baked · Fruity</div>
+          <h3 class="recipe-card-title">Bakery-Style Blueberry Muffins</h3>
+          <p class="recipe-card-desc">
+            Sky-high domed muffins bursting with juicy blueberries and a sparkling 
+            sugar crust — just like the bakery.
+          </p>
+          <div class="recipe-meta">
+            <span>⏱ 35 min</span>
+            <span>🍽 12 muffins</span>
+            <span>⭐ Easy</span>
+          </div>
+          <a href="muffins.html" class="btn btn-ghost">View Recipe </a>
+        </div>
+      </article>
+
+      <!-- Mango Pudding Card -->
+      <article class="recipe-card fade-up delay-4">
+        <a href="mango-pudding.html" class="recipe-card-img">
+          <div class="img-placeholder" style="background: linear-gradient(135deg,#fff3cd,#f9d4b8);">
+            🍮
+            <span>Mango Pudding</span>
+          </div>
+        </a>
+        <div class="recipe-card-body">
+          <div class="recipe-card-tag">Asian · Chilled</div>
+          <h3 class="recipe-card-title">Hong Kong Mango Pudding</h3>
+          <p class="recipe-card-desc">
+            Silky smooth, intensely tropical mango pudding with a vanilla cream drizzle — 
+            refreshing and utterly irresistible.
+          </p>
+          <div class="recipe-meta">
+            <span>⏱ 20 min</span>
+            <span>🍽 6 servings</span>
+            <span>⭐ Easy</span>
+          </div>
+          <a href="mango-pudding.html" class="btn btn-ghost">View Recipe </a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ABOUT STRIP
+     ============================================================ -->
+<section class="about-strip">
+  <div class="container">
+    <div class="about-strip-inner">
+      <div class="about-strip-img fade-up" aria-hidden="true">
+        👩‍🍳
+      </div>
+      <div class="about-strip-text fade-up delay-2">
+        <div class="section-label">Behind the Apron</div>
+        <h2 class="section-heading">
+          Hi, I'm <em>Candy</em>
+        </h2>
+        <p class="section-sub">
+          A self-taught dessert chef who believes the best moments happen around a kitchen table. 
+          I share approachable recipes inspired by Asian pastry traditions, classic bakery favourites, 
+          and my own sweet experiments.
+        </p>
+        <div class="about-strip-pills">
+          <span class="pill">🍡 Mochi Lover</span>
+          <span class="pill">🎂 Home Baker</span>
+          <span class="pill">☕ Café Enthusiast</span>
+          <span class="pill">📸 Food Photographer</span>
+          <span class="pill">💕 Dessert Obsessed</span>
+        </div>
+        <a href="about.html" class="btn btn-primary">My Story</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     QUOTE STRIP
+     ============================================================ -->
+<section class="quote-strip">
+  <div class="container">
+    <div class="fade-up">
+      <blockquote>
+        "Baking is love made edible."
+      </blockquote>
+      <cite>— Candy, Founder of Candy's Delights</cite>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     NEWSLETTER
+     ============================================================ -->
+<section class="newsletter">
+  <div class="container">
+    <div class="fade-up">
+      <h2>Get <em>Sweet Recipes</em> in Your Inbox</h2>
+      <p>Join thousands of home bakers who receive new recipes every week.</p>
+      <form class="newsletter-form" aria-label="Newsletter signup">
+        <label class="sr-only" for="email-input">Email address</label>
+        <input type="email" id="email-input" placeholder="Your email address" autocomplete="email" />
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+  <div class="footer-inner container">
+    <div class="footer-brand">
+      <div class="script">Candy's Delights</div>
+      <p>Homemade dessert recipes, crafted with love.</p>
+    </div>
+    <nav aria-label="Footer navigation">
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="mochi.html">Mochi</a></li>
+        <li><a href="cookies.html">Cookies</a></li>
+        <li><a href="muffins.html">Muffins</a></li>
+        <li><a href="mango-pudding.html">Mango Pudding</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-bottom container">
+    <p>© 2024 Candy's Delights. Made with 💕 and lots of butter.</p>
+    <div class="social-links" aria-label="Social media links">
+      <a href="#" aria-label="Instagram">📸</a>
+      <a href="#" aria-label="Pinterest">📌</a>
+      <a href="#" aria-label="YouTube">▶️</a>
+      <a href="#" aria-label="TikTok">🎵</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

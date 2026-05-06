@@ -1,0 +1,1 @@
+/* nav is inlined in each page */
