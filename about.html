@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍬</text></svg>" />
   <style>
-    /* About page extras */
     .timeline {
       margin-top: 3rem;
       position: relative;
@@ -57,7 +56,6 @@
       color: var(--text-light);
       line-height: 1.75;
     }
-
     .gallery-row {
       display: grid;
       grid-template-columns: 2fr 1fr 1fr;
@@ -78,23 +76,17 @@
     .gallery-item:hover { transform: scale(1.02); }
     .gallery-item:first-child { aspect-ratio: 16/10; }
     .gallery-item:not(:first-child) { aspect-ratio: 4/5; }
-
-    .gallery-row:nth-of-type(2) {
-      grid-template-columns: 1fr 1fr 2fr;
-    }
-
+    .gallery-row:nth-of-type(2) { grid-template-columns: 1fr 1fr 2fr; }
     .fav-section {
       padding: clamp(4rem, 10vw, 7rem) 0;
       background: var(--beige);
     }
-
     .fav-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
       gap: 1.2rem;
       margin-top: 2.5rem;
     }
-
     .fav-card {
       background: var(--white);
       border-radius: var(--radius-md);
@@ -113,7 +105,6 @@
       color: var(--text-dark);
     }
     .fav-card p { font-size: .78rem; color: var(--text-light); margin-top: .3rem; }
-
     @media (max-width: 768px) {
       .gallery-row,
       .gallery-row:nth-of-type(2) { grid-template-columns: 1fr 1fr; }
@@ -123,7 +114,6 @@
 </head>
 <body>
 
-<!-- NAVIGATION -->
 <nav class="navbar" role="navigation" aria-label="Main navigation">
   <a href="index.html" class="nav-brand" aria-label="Candy's Delights home">
     <span class="script">Candy's Delights</span>
@@ -150,7 +140,6 @@
   <a href="mango-pudding.html">Mango Pudding</a>
 </div>
 
-<!-- PAGE HERO -->
 <section class="page-hero">
   <div class="blob blob-1"></div>
   <div class="blob blob-2"></div>
@@ -161,11 +150,8 @@
   </div>
 </section>
 
-<!-- ABOUT MAIN SECTION -->
 <section class="about-section">
   <div class="container">
-
-    <!-- Intro -->
     <div class="about-intro">
       <div class="about-portrait fade-up" aria-hidden="true">
         👩‍🍳
@@ -185,7 +171,6 @@
       </div>
     </div>
 
-    <!-- My Journey Timeline -->
     <div class="fade-up">
       <div class="section-label">My Journey</div>
       <h2 class="section-heading">How It All <em>Began</em></h2>
@@ -218,7 +203,6 @@
       </div>
     </div>
 
-    <!-- Gallery -->
     <div class="fade-up" style="margin-top: 5rem;">
       <div class="section-label">In the Kitchen</div>
       <h2 class="section-heading">A Peek Inside <em>My World</em></h2>
@@ -233,11 +217,9 @@
         <div class="gallery-item" style="background: linear-gradient(135deg,#f9d4b8,#fff3cd); font-size: 7rem;">👩‍🍳</div>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- VALUES -->
 <section class="fav-section">
   <div class="container">
     <div class="text-center fade-up">
@@ -268,7 +250,6 @@
       </div>
     </div>
 
-    <!-- Favourites -->
     <div class="text-center fade-up" style="margin-top: 5rem;">
       <div class="section-label">A Few of My Favourites</div>
       <h2 class="section-heading">Things I <em>Love</em></h2>
@@ -284,22 +265,6 @@
   </div>
 </section>
 
-<!-- NEWSLETTER -->
-<section class="newsletter">
-  <div class="container">
-    <div class="fade-up">
-      <h2>Bake Along <em>With Me</em></h2>
-      <p>Get new recipes, tips, and behind-the-scenes kitchen moments every week.</p>
-      <form class="newsletter-form" aria-label="Newsletter signup">
-        <label class="sr-only" for="email-about">Email address</label>
-        <input type="email" id="email-about" placeholder="Your email address" autocomplete="email" />
-        <button type="submit" class="btn btn-primary">Subscribe</button>
-      </form>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
 <footer>
   <div class="footer-inner container">
     <div class="footer-brand">
