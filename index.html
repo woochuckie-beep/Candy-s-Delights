@@ -962,6 +962,255 @@
       }
     }
 
+    /* ============================================================
+       ABOUT PAGE STYLES
+       ============================================================ */
+    .about-section {
+      padding: clamp(4rem, 8vw, 6rem) 0;
+    }
+
+    .about-intro {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: clamp(3rem, 6vw, 5rem);
+      align-items: start;
+      margin-bottom: 5rem;
+    }
+
+    .about-portrait {
+      position: relative;
+      background: linear-gradient(135deg, var(--pink-light), var(--peach-light));
+      border-radius: var(--radius-lg);
+      aspect-ratio: 4/5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 7rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(244,184,193,.3);
+      overflow: visible;
+    }
+
+    .portrait-badge {
+      position: absolute;
+      bottom: -1rem;
+      right: -1rem;
+      background: var(--pink-deep);
+      color: var(--white);
+      border-radius: var(--radius-md);
+      padding: .8rem 1.1rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .portrait-badge .num {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .portrait-badge .lbl {
+      font-size: .65rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      opacity: .9;
+      margin-top: .2rem;
+    }
+
+    .about-text p {
+      color: var(--text-mid);
+      line-height: 1.85;
+      margin-bottom: 1.1rem;
+    }
+
+    /* Timeline */
+    .about-timeline {
+      margin-top: 3rem;
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .about-timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--pink-deep), transparent);
+      border-radius: 99px;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2.5rem;
+      padding-left: 1.5rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.38rem; top: .4rem;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--pink-deep);
+      border: 3px solid var(--cream);
+      box-shadow: 0 0 0 2px var(--pink-deep);
+    }
+
+    .timeline-year {
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--pink-deep);
+      margin-bottom: .3rem;
+    }
+
+    .timeline-item h4 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--text-dark);
+      margin-bottom: .3rem;
+    }
+
+    .timeline-item p {
+      font-size: .85rem;
+      color: var(--text-light);
+      line-height: 1.75;
+    }
+
+    /* Gallery */
+    .about-gallery-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 1rem;
+      margin-top: 4rem;
+    }
+
+    .about-gallery-row:nth-of-type(2) {
+      grid-template-columns: 1fr 1fr 2fr;
+      margin-top: 1rem;
+    }
+
+    .gallery-item {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--beige);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition);
+    }
+
+    .gallery-item:hover { transform: scale(1.02); }
+    .gallery-item:first-child { aspect-ratio: 16/10; }
+    .gallery-item:not(:first-child) { aspect-ratio: 4/5; }
+
+    /* Values */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .value-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 2rem 1.6rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--beige-dark);
+      transition: transform var(--transition);
+    }
+
+    .value-card:hover { transform: translateY(-4px); }
+
+    .value-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .value-card h4 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--text-dark);
+      margin-bottom: .5rem;
+    }
+
+    .value-card p {
+      font-size: .85rem;
+      color: var(--text-light);
+      line-height: 1.75;
+    }
+
+    /* Favourites */
+    .fav-section-inner {
+      padding: clamp(4rem, 8vw, 6rem) 0;
+      background: var(--beige);
+      margin-top: 5rem;
+      border-radius: var(--radius-lg);
+    }
+
+    .fav-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1.2rem;
+      margin-top: 2.5rem;
+    }
+
+    .fav-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 1.6rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--beige-dark);
+      transition: transform var(--transition);
+    }
+
+    .fav-card:hover { transform: translateY(-4px); }
+    .fav-card .fav-emoji { font-size: 2.5rem; margin-bottom: .75rem; }
+
+    .fav-card h4 {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text-dark);
+    }
+
+    .fav-card p {
+      font-size: .78rem;
+      color: var(--text-light);
+      margin-top: .3rem;
+    }
+
+    @media (max-width: 768px) {
+      .about-intro {
+        grid-template-columns: 1fr;
+      }
+
+      .about-portrait {
+        aspect-ratio: 3/2;
+        font-size: 5rem;
+        max-width: 340px;
+        margin: 0 auto;
+      }
+
+      .about-gallery-row,
+      .about-gallery-row:nth-of-type(2) {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .about-gallery-row .gallery-item:first-child {
+        grid-column: 1 / -1;
+        aspect-ratio: 16/9;
+      }
+    }
+
     @media (max-width: 480px) {
       :root {
         --nav-h: 60px;
@@ -1006,6 +1255,7 @@
   </a>
   <ul class="nav-links" role="list">
     <li><a onclick="showSection('home')">Home</a></li>
+    <li><a onclick="showSection('about')">About Candy</a></li>
     <li><a onclick="showSection('mochi')">Mochi</a></li>
     <li><a onclick="showSection('cookies')">Cookies</a></li>
     <li><a onclick="showSection('muffins')">Muffins</a></li>
@@ -1018,6 +1268,7 @@
 </nav>
 <div class="nav-drawer" role="dialog" aria-label="Mobile menu">
   <a onclick="showSection('home')">Home</a>
+  <a onclick="showSection('about')">About Candy</a>
   <a onclick="showSection('mochi')">Mochi</a>
   <a onclick="showSection('cookies')">Cookies</a>
   <a onclick="showSection('muffins')">Muffins</a>
@@ -1185,6 +1436,144 @@
       </div>
     </div>
   </section>
+</div>
+
+<!-- ABOUT PAGE -->
+<div class="page-section" id="section-about">
+
+  <!-- Hero -->
+  <section class="page-hero" style="position:relative;overflow:hidden;">
+    <div class="blob blob-1" style="opacity:.35;"></div>
+    <div class="blob blob-2" style="opacity:.35;"></div>
+    <div class="container" style="position:relative;z-index:1;">
+      <span class="page-hero-emoji">👩‍🍳</span>
+      <h1>The Story <em>Behind</em><br>the Apron</h1>
+      <p>Meet Candy — baker, recipe developer, and the heart behind every sweet creation on this site.</p>
+    </div>
+  </section>
+
+  <!-- Main About Content -->
+  <section class="about-section">
+    <div class="container">
+
+      <!-- Intro: Portrait + Bio -->
+      <div class="about-intro">
+        <div class="about-portrait fade-up" aria-hidden="true">
+          👩‍🍳
+          <div class="portrait-badge">
+            <div class="num">8+</div>
+            <div class="lbl">Years Baking</div>
+          </div>
+        </div>
+        <div class="about-text fade-up delay-2">
+          <div class="section-label">My Story</div>
+          <h2 class="section-heading">Hello, I'm <em>Candy</em></h2>
+          <p>I fell in love with baking at seven years old, perched on a stool in my grandmother's kitchen, watching her fold red bean paste into paper-thin mochi wrappers with impossible grace. She never measured anything — everything was by feel, by smell, by intuition.</p>
+          <p>That kitchen became my first classroom. I spent years recreating her recipes, then branching out into the French patisserie techniques I studied in culinary school, and eventually finding my own voice — a fusion of East and West, tradition and experimentation.</p>
+          <p>Candy's Delights began as a weekend blog where I shared my recipe notes. What I didn't expect was the community it would become — thousands of home bakers who write to tell me how Candy's mochi became a family staple, or how my cookie recipe made someone's terrible Tuesday a little sweeter.</p>
+          <p>That's why I keep baking. That's why I keep sharing.</p>
+          <a onclick="showSection('home')" class="btn btn-primary" style="margin-top:1.5rem;cursor:pointer;">Explore My Recipes</a>
+        </div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="fade-up">
+        <div class="section-label">My Journey</div>
+        <h2 class="section-heading">How It All <em>Began</em></h2>
+        <div class="about-timeline">
+          <div class="timeline-item">
+            <div class="timeline-year">2016</div>
+            <h4>The First Batch 🍪</h4>
+            <p>Baked my first proper batch of chocolate chip cookies for a school bake sale. Sold out in 10 minutes and knew I was onto something.</p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2018</div>
+            <h4>Culinary Exploration 🎓</h4>
+            <p>Enrolled in a weekend patisserie course and became completely obsessed with French technique — laminated doughs, tempering chocolate, the works.</p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2020</div>
+            <h4>The Blog is Born ✍️</h4>
+            <p>Started Candy's Delights during the quiet of lockdown. What began as a personal recipe journal quickly found a devoted readership.</p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2022</div>
+            <h4>Going Full-Time 🎉</h4>
+            <p>Left my day job to pursue baking full-time. Launched my first online cooking class, sold out within 48 hours.</p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2024</div>
+            <h4>New Chapter 🚀</h4>
+            <p>Rebuilt the site, launched new recipe series, and joined forces with a small team of tasters and photographers to bring every recipe to life beautifully.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gallery -->
+      <div class="fade-up" style="margin-top: 5rem;">
+        <div class="section-label">In the Kitchen</div>
+        <h2 class="section-heading">A Peek Inside <em>My World</em></h2>
+        <div class="about-gallery-row">
+          <div class="gallery-item" style="background: linear-gradient(135deg,#fce8ec,#f9d4b8); font-size: 7rem;">🍡</div>
+          <div class="gallery-item" style="background: linear-gradient(135deg,#f5ece3,#e8d9cc);">🍪</div>
+          <div class="gallery-item" style="background: linear-gradient(135deg,#fef0e7,#fce8ec);">🧁</div>
+        </div>
+        <div class="about-gallery-row">
+          <div class="gallery-item" style="background: linear-gradient(135deg,#fff3cd,#f9d4b8);">🍮</div>
+          <div class="gallery-item" style="background: linear-gradient(135deg,#fce8ec,#f5ece3);">🎂</div>
+          <div class="gallery-item" style="background: linear-gradient(135deg,#f9d4b8,#fff3cd); font-size: 7rem;">👩‍🍳</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Philosophy + Favourites -->
+  <section style="padding: clamp(4rem,8vw,6rem) 0; background: var(--beige); margin-top: 3rem;">
+    <div class="container">
+      <div class="text-center fade-up">
+        <div class="section-label">What I Believe In</div>
+        <h2 class="section-heading">My Baking <em>Philosophy</em></h2>
+        <p class="section-sub">Every recipe I create is guided by these simple truths.</p>
+      </div>
+      <div class="values-grid" style="margin-top: 3rem;">
+        <div class="value-card fade-up delay-1">
+          <div class="value-icon">🧡</div>
+          <h4>Made with Intention</h4>
+          <p>Every ingredient is chosen purposefully. I believe that care and attention are the most important ingredients in any recipe.</p>
+        </div>
+        <div class="value-card fade-up delay-2">
+          <div class="value-icon">🌿</div>
+          <h4>Quality Ingredients</h4>
+          <p>Real butter. Fresh eggs. Good chocolate. The quality of what you put in determines everything that comes out.</p>
+        </div>
+        <div class="value-card fade-up delay-3">
+          <div class="value-icon">📖</div>
+          <h4>Recipes That Teach</h4>
+          <p>I write recipes that explain the why, not just the what. Understanding technique means you can bake anything, not just follow instructions.</p>
+        </div>
+        <div class="value-card fade-up delay-4">
+          <div class="value-icon">🤝</div>
+          <h4>Community First</h4>
+          <p>This site exists because of the incredible baking community. Your recreations, questions, and feedback shape every recipe I write.</p>
+        </div>
+      </div>
+
+      <div class="text-center fade-up" style="margin-top: 5rem;">
+        <div class="section-label">A Few of My Favourites</div>
+        <h2 class="section-heading">Things I <em>Love</em></h2>
+      </div>
+      <div class="fav-grid">
+        <div class="fav-card fade-up delay-1"><div class="fav-emoji">☕</div><h4>Matcha Lattes</h4><p>My morning ritual</p></div>
+        <div class="fav-card fade-up delay-2"><div class="fav-emoji">🍑</div><h4>Stone Fruits</h4><p>Summer's best gift</p></div>
+        <div class="fav-card fade-up delay-3"><div class="fav-emoji">🎵</div><h4>Jazz in the Kitchen</h4><p>Baking soundtrack</p></div>
+        <div class="fav-card fade-up delay-4"><div class="fav-emoji">📷</div><h4>Food Photography</h4><p>Art meets appetite</p></div>
+        <div class="fav-card fade-up delay-1"><div class="fav-emoji">🌸</div><h4>Floral Flavours</h4><p>Rose, lavender, yuzu</p></div>
+        <div class="fav-card fade-up delay-2"><div class="fav-emoji">📚</div><h4>Pastry Books</h4><p>My endless library</p></div>
+      </div>
+    </div>
+  </section>
+
 </div>
 
 <!-- MOCHI RECIPE PAGE -->
@@ -1800,6 +2189,7 @@
     <nav aria-label="Footer navigation">
       <ul class="footer-links">
         <li><a onclick="showSection('home')">Home</a></li>
+        <li><a onclick="showSection('about')">About Candy</a></li>
         <li><a onclick="showSection('mochi')">Mochi</a></li>
         <li><a onclick="showSection('cookies')">Cookies</a></li>
         <li><a onclick="showSection('muffins')">Muffins</a></li>
