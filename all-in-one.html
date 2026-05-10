@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Candy's Delights — Homemade Dessert Recipes</title>
+  <meta name="description" content="Handcrafted dessert recipes by Candy — mochi, cookies, banana cupcakes, mango pudding and more." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍬</text></svg>" />
+  <style>
+    /* ===== CSS VARIABLES ===== */
+    :root {
+      --pink: #e8929f;
+      --pink-light: #f9d6e0;
+      --peach: #f9b89f;
+      --peach-light: #fce8d5;
+      --beige: #f5ece3;
+      --beige-dark: #e8d9cc;
+      --text-dark: #333;
+      --text-mid: #666;
+      --text-light: #999;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      color: var(--text-dark);
+      background: #fafaf8;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 2rem;
+      background: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-brand {
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .script {
+      font-size: 1.5rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, var(--pink), var(--peach));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tagline {
+      font-size: 0.75rem;
+      color: var(--text-light);
+      font-style: italic;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 500;
+      transition: color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--pink);
+    }
+
+    .nav-toggle {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .nav-toggle {
+        display: block;
+        border: none;
+        background: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+    }
+
+    /* ===== CONTAINER ===== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ===== SECTION CONTENT ===== */
+    .page-section {
+      display: none;
+    }
+
+    .page-section.active {
+      display: block;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(135deg, #fce8ec, #f9d4b8);
+      padding: 6rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin: 2rem 0;
+      color: var(--text-dark);
+    }
+
+    .hero h1 em {
+      background: linear-gradient(135deg, var(--pink), var(--peach));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-style: italic;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-mid);
+      max-width: 600px;
+      margin: 1rem auto;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--pink), var(--peach));
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(232, 146, 159, 0.3);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--pink);
+      border: 2px solid var(--pink);
+    }
+
+    .btn-ghost:hover {
+      background: var(--pink);
+      color: white;
+    }
+
+    /* ===== RECIPE GRID ===== */
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 4rem 0;
+    }
+
+    .recipe-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .recipe-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+    }
+
+    .recipe-card-img {
+      background: linear-gradient(135deg, var(--beige), var(--peach-light));
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      text-decoration: none;
+      overflow: hidden;
+    }
+
+    .recipe-card-body {
+      padding: 2rem;
+    }
+
+    .recipe-card-tag {
+      font-size: 0.75rem;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .recipe-card-title {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--text-dark);
+    }
+
+    .recipe-card-desc {
+      font-size: 0.95rem;
+      color: var(--text-mid);
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .recipe-meta {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-bottom: 1rem;
+    }
+
+    /* ===== RECIPE PAGE ===== */
+    .recipe-page {
+      padding: 4rem 2rem;
+    }
+
+    .page-hero {
+      padding: 6rem 2rem 4rem;
+      text-align: center;
+      border-radius: 12px;
+      margin-bottom: 4rem;
+    }
+
+    .page-hero h1 {
+      font-size: 3rem;
+      margin: 1rem 0;
+    }
+
+    .page-hero p {
+      font-size: 1.1rem;
+      color: var(--text-mid);
+    }
+
+    .page-hero-emoji {
+      font-size: 4rem;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .recipe-layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 3rem;
+    }
+
+    .recipe-main {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .recipe-intro h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: var(--text-dark);
+    }
+
+    .recipe-intro p {
+      margin-bottom: 1rem;
+      line-height: 1.8;
+      color: var(--text-mid);
+    }
+
+    .recipe-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      padding: 2rem;
+      background: linear-gradient(135deg, var(--beige), var(--peach-light));
+      border-radius: 12px;
+    }
+
+    .stat-box {
+      text-align: center;
+    }
+
+    .stat-val {
+      font-size: 1.8rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, var(--pink), var(--peach));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-lbl {
+      font-size: 0.85rem;
+      color: var(--text-mid);
+      margin-top: 0.5rem;
+    }
+
+    .recipe-steps h3 {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      color: var(--text-dark);
+    }
+
+    .step-item {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .step-item:last-child {
+      border-bottom: none;
+    }
+
+    .step-num {
+      font-size: 2rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, var(--pink), var(--peach));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      min-width: 50px;
+      text-align: center;
+    }
+
+    .step-content h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-dark);
+    }
+
+    .step-content p {
+      color: var(--text-mid);
+      line-height: 1.8;
+    }
+
+    .tip-box {
+      background: linear-gradient(135deg, var(--beige), var(--peach-light));
+      padding: 2rem;
+      border-radius: 12px;
+      border-left: 4px solid var(--pink);
+    }
+
+    .tip-box strong {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--text-dark);
+    }
+
+    .recipe-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .sidebar-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border: 2px solid #f0f0f0;
+    }
+
+    .sidebar-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--pink);
+      color: var(--text-dark);
+    }
+
+    .ingredient-list {
+      list-style: none;
+    }
+
+    .ingredient-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid #f5f5f5;
+      font-size: 0.95rem;
+    }
+
+    .ingredient-list li:last-child {
+      border-bottom: none;
+    }
+
+    .ing-name {
+      color: var(--text-dark);
+      font-weight: 500;
+    }
+
+    .ing-amount {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    .sidebar-card p {
+      font-size: 0.85rem;
+      color: var(--text-mid);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .sidebar-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .sidebar-card strong {
+      display: block;
+      margin-bottom: 0.3rem;
+      color: var(--text-dark);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--text-dark);
+      color: white;
+      padding: 3rem 2rem 1rem;
+      margin-top: 4rem;
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-brand .script {
+      -webkit-text-fill-color: white;
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-brand p {
+      color: #ccc;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .footer-links a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid #555;
+      color: #999;
+      font-size: 0.9rem;
+    }
+
+    .social-links {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .social-links a {
+      font-size: 1.5rem;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+      text-decoration: none;
+    }
+
+    .social-links a:hover {
+      opacity: 1;
+    }
+
+    /* ===== SECTION LABEL ===== */
+    .section-label {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+    }
+
+    .section-heading {
+      font-size: 2.5rem;
+      color: var(--text-dark);
+      line-height: 1.2;
+    }
+
+    .section-heading em {
+      background: linear-gradient(135deg, var(--pink), var(--peach));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-style: italic;
+    }
+
+    .section-sub {
+      font-size: 1.1rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+
+    .featured-header {
+      margin-bottom: 3rem;
+    }
+
+    .featured-header div {
+      margin-bottom: 2rem;
+    }
+
+    /* ===== MUSIC PLAYER ===== */
+    #music-toggle {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--pink);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    #music-toggle:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+      background: rgba(255, 255, 255, 0.97);
+    }
+
+    #music-toggle.playing {
+      background: linear-gradient(135deg, var(--pink-light), var(--peach-light));
+    }
+
+    #music-icon {
+      font-size: 1rem;
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+
+    #music-toggle.playing #music-icon {
+      animation: spin-sway 3s ease-in-out infinite;
+    }
+
+    @keyframes spin-sway {
+      0%, 100% { transform: rotate(-10deg); }
+      50%       { transform: rotate(10deg); }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .recipe-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .recipe-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .recipe-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .page-hero h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="navbar">
+  <a href="#home" class="nav-brand">
+    <span class="script">Candy's Delights</span>
+    <span class="tagline">Homemade with love</span>
+  </a>
+  <ul class="nav-links">
+    <li><a onclick="showSection('home')" style="cursor:pointer;">Home</a></li>
+    <li><a onclick="showSection('mochi')" style="cursor:pointer;">Mochi</a></li>
+    <li><a onclick="showSection('cookies')" style="cursor:pointer;">Cookies</a></li>
+    <li><a onclick="showSection('muffins')" style="cursor:pointer;">Muffins</a></li>
+    <li><a onclick="showSection('mango')" style="cursor:pointer;">Mango Pudding</a></li>
+    <li><a onclick="showSection('eggs')" style="cursor:pointer;">Egg Tarts</a></li>
+  </ul>
+  <button class="nav-toggle" onclick="toggleMenu()">☰</button>
+</nav>
+
+<!-- HOME PAGE -->
+<div class="page-section active" id="section-home">
+  <section class="hero">
+    <div class="container">
+      <div class="hero-eyebrow">✦ Sweet Handmade Creations</div>
+      <h1>Welcome to <em>Candy's Delights</em></h1>
+      <p>Discover the joy of homemade desserts — crafted with love, shared with warmth. From silky mochi to golden-edged cookies, every recipe tells a sweet story.</p>
+      <div class="hero-buttons">
+        <button class="btn btn-primary" onclick="scrollToRecipes()">Explore Recipes</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="recipe-page">
+    <div class="container">
+      <div class="featured-header">
+        <div>
+          <div class="section-label">Our Specialties</div>
+          <h2 class="section-heading">Recipes Made to<br><em>Delight</em></h2>
+        </div>
+        <p class="section-sub">
+          Each recipe is tested, tasted, and perfected in Candy's kitchen — ready for you to recreate at home.
+        </p>
+      </div>
+
+      <div class="recipe-grid" id="recipes">
+        <!-- Mochi Card -->
+        <article class="recipe-card">
+          <a onclick="showSection('mochi')" class="recipe-card-img" style="cursor:pointer;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+              🍡
+              <span style="font-size:0.5em;">Coconut Mochi</span>
+            </div>
+          </a>
+          <div class="recipe-card-body">
+            <div class="recipe-card-tag">Asian · Steamed · Dairy-Free</div>
+            <h3 class="recipe-card-title">Coconut Mochi</h3>
+            <p class="recipe-card-desc">Chewy steamed coconut mochi filled with peanut candy, sesame, coconut flakes, and Skor — rolled in shredded coconut for a dreamy finish.</p>
+            <div class="recipe-meta">
+              <span>⏱ 80 min</span>
+              <span>🍽 ~16 pieces</span>
+              <span>⭐ Easy</span>
+            </div>
+            <button class="btn btn-ghost" onclick="showSection('mochi')">View Recipe</button>
+          </div>
+        </article>
+
+        <!-- Cookies Card -->
+        <article class="recipe-card">
+          <a onclick="showSection('cookies')" class="recipe-card-img" style="cursor:pointer;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+              🍪
+              <span style="font-size:0.5em;">Brown Butter Cookies</span>
+            </div>
+          </a>
+          <div class="recipe-card-body">
+            <div class="recipe-card-tag">Baked · Classic</div>
+            <h3 class="recipe-card-title">Brown Butter Chocolate Chip Cookies</h3>
+            <p class="recipe-card-desc">Crispy edges, gooey centres, and a deep nutty richness from browned butter that elevates every bite.</p>
+            <div class="recipe-meta">
+              <span>⏱ 30 min</span>
+              <span>🍽 24 cookies</span>
+              <span>⭐ Easy</span>
+            </div>
+            <button class="btn btn-ghost" onclick="showSection('cookies')">View Recipe</button>
+          </div>
+        </article>
+
+        <!-- Muffins Card -->
+        <article class="recipe-card">
+          <a onclick="showSection('muffins')" class="recipe-card-img" style="cursor:pointer;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+              🧁
+              <span style="font-size:0.5em;">Banana Cupcakes</span>
+            </div>
+          </a>
+          <div class="recipe-card-body">
+            <div class="recipe-card-tag">Baked · Fruity</div>
+            <h3 class="recipe-card-title">Banana Cupcakes</h3>
+            <p class="recipe-card-desc">Moist, cinnamon-spiced banana cupcakes topped with coconut, chocolate chips, cranberries, almonds, and Skor. No frosting needed.</p>
+            <div class="recipe-meta">
+              <span>⏱ 45 min</span>
+              <span>🍽 12 cupcakes</span>
+              <span>⭐ Easy</span>
+            </div>
+            <button class="btn btn-ghost" onclick="showSection('muffins')">View Recipe</button>
+          </div>
+        </article>
+
+        <!-- Mango Pudding Card -->
+        <article class="recipe-card">
+          <a onclick="showSection('mango')" class="recipe-card-img" style="cursor:pointer;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+              🍮
+              <span style="font-size:0.5em;">Mango Pudding</span>
+            </div>
+          </a>
+          <div class="recipe-card-body">
+            <div class="recipe-card-tag">Asian · Chilled</div>
+            <h3 class="recipe-card-title">Mango Pudding</h3>
+            <p class="recipe-card-desc">Silky mango pudding with whipping cream, fresh mango bits, and a bright squeeze of lemon — refreshing and utterly irresistible.</p>
+            <div class="recipe-meta">
+              <span>⏱ 20 min</span>
+              <span>🍽 6 servings</span>
+              <span>⭐ Easy</span>
+            </div>
+            <button class="btn btn-ghost" onclick="showSection('mango')">View Recipe</button>
+          </div>
+        </article>
+
+        <!-- Egg Tart Card -->
+        <article class="recipe-card">
+          <a onclick="showSection('eggs')" class="recipe-card-img" style="cursor:pointer;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+              🥧
+              <span style="font-size:0.5em;">Chinese Egg Tarts</span>
+            </div>
+          </a>
+          <div class="recipe-card-body">
+            <div class="recipe-card-tag">Asian · Baked · Classic</div>
+            <h3 class="recipe-card-title">Chinese Egg Tarts</h3>
+            <p class="recipe-card-desc">Silky smooth egg custard with a touch of condensed milk, baked in golden pastry shells — a timeless dim sum classic made at home.</p>
+            <div class="recipe-meta">
+              <span>⏱ 35 min</span>
+              <span>🍽 8 large tarts</span>
+              <span>⭐ Easy</span>
+            </div>
+            <button class="btn btn-ghost" onclick="showSection('eggs')">View Recipe</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- MOCHI RECIPE PAGE -->
+<div class="page-section" id="section-mochi">
+  <div class="page-hero" style="background: linear-gradient(135deg,#fce8ec 0%,#fdf6f0 60%,#f9d4b8 100%)">
+    <div class="container">
+      <span class="page-hero-emoji">🍡</span>
+      <h1>Coconut <em>Mochi</em></h1>
+      <p>Pillowy, chewy steamed mochi filled with coconut flakes, peanut candy, roasted sesame, and Skor — wrapped in shredded coconut for a truly indulgent bite.</p>
+    </div>
+  </div>
+
+  <section class="recipe-page">
+    <div class="container">
+      <div class="recipe-layout">
+        <div class="recipe-main">
+          <div class="recipe-intro">
+            <h2>About This Recipe</h2>
+            <p>This coconut mochi is a labour of love — and one of the most satisfying things to make in my kitchen. The outer dough is steamed rather than microwaved, giving it a deeply chewy, silky texture that stores beautifully.</p>
+            <p>The filling is what makes this truly special. A combination of toasted coconut flakes, crunchy peanut candy, nutty roasted sesame, and the buttery toffee crunch of Skor creates a sweet symphony in every bite.</p>
+            <p>This recipe takes about an hour of steaming, but the active work is minimal. Make it on a weekend afternoon, and you'll have a stunning box of mochi ready to share — or keep all to yourself.</p>
+          </div>
+
+          <div class="recipe-stats">
+            <div class="stat-box"><div class="stat-val">20</div><div class="stat-lbl">Min Prep</div></div>
+            <div class="stat-box"><div class="stat-val">~16</div><div class="stat-lbl">Pieces</div></div>
+            <div class="stat-box"><div class="stat-val">★★★</div><div class="stat-lbl">Easy</div></div>
+            <div class="stat-box"><div class="stat-val">60</div><div class="stat-lbl">Min Steam</div></div>
+          </div>
+
+          <div class="recipe-steps">
+            <h3>Step-by-Step Instructions</h3>
+            <div class="step-item">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <h4>Mix the Mochi Dough</h4>
+                <p>In a large bowl, combine 380g rice flour, 70g wheat starch, 300g sugar, one 400g can of full-fat coconut milk, 300g water, 70g oil, and 2 drops of food colouring (if using). Whisk until smooth and no lumps remain.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <h4>Steam the Dough</h4>
+                <p>Pour the batter into a greased, heatproof tray or pan. Cover tightly with aluminium foil — this is important to prevent condensation dripping in and making the dough watery. Steam for 60 minutes until the dough is completely cooked through and translucent.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <h4>Prepare the Filling</h4>
+                <p>While the mochi steams, prepare your filling station: toast the coconut flakes lightly in a dry pan until golden. Roughly crush the peanut candy into small pieces. Mix together the toasted coconut, peanut candy, roasted sesame, and Skor bits in a bowl.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">4</div>
+              <div class="step-content">
+                <h4>Portion the Dough</h4>
+                <p>Dust a clean work surface generously with shredded coconut (this acts as your dusting agent and becomes part of the final coating). Portion the mochi dough into 45g pieces. Work quickly while the mochi is still warm but cool enough to handle.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">5</div>
+              <div class="step-content">
+                <h4>Fill & Wrap</h4>
+                <p>Flatten each 45g piece into a round disc. Place a generous spoonful of the filling mixture in the centre. Gather the edges of the dough up and around the filling, pinching firmly to seal. Roll gently in the shredded coconut coating.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">6</div>
+              <div class="step-content">
+                <h4>Set & Serve</h4>
+                <p>Place completed mochi on a coconut-dusted tray. They can be served at room temperature or lightly chilled. Best eaten the day they are made, when the mochi is at its softest and most pillowy.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="tip-box">
+            <strong>💡 Candy's Tips</strong>
+            Work quickly once the mochi is cool enough to handle — it becomes stiffer as it cools further. If it tightens up, a brief moment back over the steamer will soften it again. Make sure your filling is ready before you start portioning so everything stays warm and pliable.
+          </div>
+        </div>
+
+        <aside class="recipe-sidebar">
+          <div class="sidebar-card">
+            <h3>🛒 Outer Dough</h3>
+            <ul class="ingredient-list">
+              <li><span class="ing-name">Rice flour</span><span class="ing-amount">380g</span></li>
+              <li><span class="ing-name">Wheat starch</span><span class="ing-amount">70g</span></li>
+              <li><span class="ing-name">Sugar</span><span class="ing-amount">300g</span></li>
+              <li><span class="ing-name">Coconut milk (1 can)</span><span class="ing-amount">400g</span></li>
+              <li><span class="ing-name">Water</span><span class="ing-amount">300g</span></li>
+              <li><span class="ing-name">Oil</span><span class="ing-amount">70g</span></li>
+              <li><span class="ing-name">Food colouring</span><span class="ing-amount">2 drops</span></li>
+            </ul>
+          </div>
+
+          <div class="sidebar-card">
+            <h3>🍬 Filling</h3>
+            <ul class="ingredient-list">
+              <li><span class="ing-name">Coconut flakes</span><span class="ing-amount">to taste</span></li>
+              <li><span class="ing-name">Peanut candy</span><span class="ing-amount">to taste</span></li>
+              <li><span class="ing-name">Roasted white sesame</span><span class="ing-amount">to taste</span></li>
+              <li><span class="ing-name">Skor (toffee bits)</span><span class="ing-amount">to taste</span></li>
+              <li><span class="ing-name">Shredded coconut (coating)</span><span class="ing-amount">generous</span></li>
+            </ul>
+          </div>
+
+          <div class="sidebar-card">
+            <h3>📋 Quick Notes</h3>
+            <p><strong>Portion Size</strong> Each piece is 45g of dough. Use a kitchen scale for consistent results.</p>
+            <p><strong>Storage</strong> Keep in an airtight container at room temperature for 1 day, or in the fridge for up to 2 days. Do not freeze.</p>
+            <p><strong>Dietary</strong> Naturally dairy-free. Check your peanut candy and Skor labels for allergen info.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- COOKIES RECIPE PAGE -->
+<div class="page-section" id="section-cookies">
+  <div class="page-hero" style="background: linear-gradient(135deg,#f5ece3 0%,#fdf6f0 60%,#fce8ec 100%)">
+    <div class="container">
+      <span class="page-hero-emoji">🍪</span>
+      <h1>The <em>Perfect</em> Cookies</h1>
+      <p>Loaded with oats, coconut, cranberries, blueberries, chocolate, toffee bits, and almonds — one cookie has it all.</p>
+    </div>
+  </div>
+
+  <section class="recipe-page">
+    <div class="container">
+      <div class="recipe-layout">
+        <div class="recipe-main">
+          <div class="recipe-intro">
+            <h2>About This Recipe</h2>
+            <p>Some cookies are about one thing — chocolate, or caramel, or a single perfect ingredient shining through. These cookies are about everything. Oats for chew, coconut for richness, cranberries for tartness, and toasted almonds for texture — all held together with brown butter and a touch of vanilla.</p>
+            <p>The dough comes together quickly in one bowl — no chilling required — and the cookies bake in just 10 minutes. The key is pulling them while the centres still look slightly underdone. They firm up as they cool and end up with that perfect chewy-but-crispy texture.</p>
+            <p>Finish each one with a whole almond pressed on top before baking. It's a small touch that makes them look as good as they taste.</p>
+          </div>
+
+          <div class="recipe-stats">
+            <div class="stat-box"><div class="stat-val">15</div><div class="stat-lbl">Min Prep</div></div>
+            <div class="stat-box"><div class="stat-val">16–20</div><div class="stat-lbl">Cookies</div></div>
+            <div class="stat-box"><div class="stat-val">★★★</div><div class="stat-lbl">Easy</div></div>
+            <div class="stat-box"><div class="stat-val">10</div><div class="stat-lbl">Min Bake</div></div>
+          </div>
+
+          <div class="recipe-steps">
+            <h3>Step-by-Step Instructions</h3>
+            <div class="step-item">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <h4>Preheat & Prep</h4>
+                <p>Preheat your oven to 350°F (180°C). Line two large baking trays with parchment paper and set aside.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <h4>Cream Butter & Sugars</h4>
+                <p>In a large bowl, beat together ½ cup softened butter, ¼ cup packed brown sugar, and ¼ cup granulated sugar until light and fluffy. Beat in 1 egg, then add 1 tbsp milk and 1 tsp vanilla extract. Mix until combined.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <h4>Mix the Dry Ingredients</h4>
+                <p>In a separate bowl, whisk together 1 cup all-purpose flour, ½ tsp baking powder, ½ tsp baking soda, and a pinch of salt. Stir in 1 cup large-flake rolled oats. Add the flour-oat mixture to the wet ingredients and mix until just combined.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">4</div>
+              <div class="step-content">
+                <h4>Fold in the Good Stuff</h4>
+                <p>Stir in ½ cup shredded coconut, ½ cup sliced almonds, ½ cup dried cranberries, ½ cup dried blueberries, ½ cup semi-sweet chocolate chips, ¼ cup SKOR toffee bits, and 2 tbsp flaxseeds. Mix gently until evenly distributed.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">5</div>
+              <div class="step-content">
+                <h4>Scoop & Decorate</h4>
+                <p>Use an ice-cream scoop to portion the dough onto the prepared trays, spacing each about 2 inches (5 cm) apart. Slightly press and flatten each ball. Press one whole almond into the top of each cookie for a decorative touch.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">6</div>
+              <div class="step-content">
+                <h4>Bake & Cool</h4>
+                <p>Bake for 10 minutes, until the edges are golden but the centres still look slightly underdone — this is correct. Let cool on the pans for 5 minutes, then transfer to a wire rack to cool completely.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="tip-box">
+            <strong>💡 Candy's Tips</strong>
+            Don't overbake these — the 10-minute mark is your friend. Pulling them early is the secret to that chewy, bakery-style texture. Room-temperature butter creams much more smoothly than cold butter.
+          </div>
+        </div>
+
+        <aside class="recipe-sidebar">
+          <div class="sidebar-card">
+            <h3>🛒 Ingredients</h3>
+            <ul class="ingredient-list">
+              <li><span class="ing-name">Butter, softened</span><span class="ing-amount">½ cup</span></li>
+              <li><span class="ing-name">Brown sugar, packed</span><span class="ing-amount">¼ cup</span></li>
+              <li><span class="ing-name">Granulated sugar</span><span class="ing-amount">¼ cup</span></li>
+              <li><span class="ing-name">Egg</span><span class="ing-amount">1</span></li>
+              <li><span class="ing-name">Milk</span><span class="ing-amount">1 tbsp</span></li>
+              <li><span class="ing-name">Vanilla extract</span><span class="ing-amount">1 tsp</span></li>
+              <li><span class="ing-name">All-purpose flour</span><span class="ing-amount">1 cup</span></li>
+              <li><span class="ing-name">Large-flake rolled oats</span><span class="ing-amount">1 cup</span></li>
+              <li><span class="ing-name">Baking powder</span><span class="ing-amount">½ tsp</span></li>
+              <li><span class="ing-name">Baking soda</span><span class="ing-amount">½ tsp</span></li>
+              <li><span class="ing-name">Salt</span><span class="ing-amount">pinch</span></li>
+              <li><span class="ing-name">Large shredded coconut</span><span class="ing-amount">½ cup</span></li>
+              <li><span class="ing-name">Sliced almonds</span><span class="ing-amount">½ cup</span></li>
+              <li><span class="ing-name">Dried cranberries</span><span class="ing-amount">½ cup</span></li>
+              <li><span class="ing-name">Dried blueberries</span><span class="ing-amount">½ cup</span></li>
+              <li><span class="ing-name">Semi-sweet chocolate chips</span><span class="ing-amount">½ cup</span></li>
+              <li><span class="ing-name">SKOR toffee bits</span><span class="ing-amount">¼ cup</span></li>
+              <li><span class="ing-name">Flaxseeds</span><span class="ing-amount">2 tbsp</span></li>
+              <li><span class="ing-name">Whole almonds (for décor)</span><span class="ing-amount">16–20</span></li>
+            </ul>
+          </div>
+
+          <div class="sidebar-card">
+            <h3>📋 Quick Notes</h3>
+            <p><strong>Storage</strong> Store cooled cookies in an airtight container at room temp for 5 days. Freeze baked cookies or dough balls for up to 3 months.</p>
+            <p><strong>Swap the Mix-Ins</strong> Swap dried blueberries for raisins, or use pecans instead of almonds. White chocolate chips work beautifully in place of semi-sweet.</p>
+            <p><strong>Oven Tip</strong> Every oven runs differently — start checking at 9 minutes. The cookies should look underdone in the centre; they firm up as they cool.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- MUFFINS RECIPE PAGE -->
+<div class="page-section" id="section-muffins">
+  <div class="page-hero" style="background: linear-gradient(135deg,#fef0e7 0%,#fdf6f0 60%,#fce8ec 100%)">
+    <div class="container">
+      <span class="page-hero-emoji">🧁</span>
+      <h1>Banana <em>Cupcakes</em></h1>
+      <p>Moist, warmly spiced banana cupcakes loaded with an incredible crunchy topping — coconut, chocolate, cranberries, almonds, and more.</p>
+    </div>
+  </div>
+
+  <section class="recipe-page">
+    <div class="container">
+      <div class="recipe-layout">
+        <div class="recipe-main">
+          <div class="recipe-intro">
+            <h2>About This Recipe</h2>
+            <p>These banana cupcakes are everything you want from a banana bake — deeply moist, warmly spiced with cinnamon, and carrying that irresistible ripe banana sweetness. The sour cream keeps them tender and adds a subtle tang that balances the sweetness.</p>
+            <p>But the real magic is the topping. Instead of frosting, these cupcakes get an extraordinary crown of coconut flakes, chocolate chips, dried cranberries, flax seed, and sliced almonds. Every bite is a different texture and flavour.</p>
+            <p>The riper your bananas, the better. Look for ones with black-speckled skin — they're sweeter, softer, and pack far more banana flavour into the batter. If your bananas aren't quite there yet, keep them on the counter for a day.</p>
+          </div>
+
+          <div class="recipe-stats">
+            <div class="stat-box"><div class="stat-val">15</div><div class="stat-lbl">Min Prep</div></div>
+            <div class="stat-box"><div class="stat-val">12</div><div class="stat-lbl">Cupcakes</div></div>
+            <div class="stat-box"><div class="stat-val">★★★</div><div class="stat-lbl">Easy</div></div>
+            <div class="stat-box"><div class="stat-val">30</div><div class="stat-lbl">Min Bake</div></div>
+          </div>
+
+          <div class="recipe-steps">
+            <h3>Step-by-Step Instructions</h3>
+            <div class="step-item">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <h4>Preheat & Prep</h4>
+                <p>Preheat your oven to 350°F (175°C). Line a 12-hole muffin tin with paper cupcake cases or grease well. Peel 3 very ripe bananas and mash them thoroughly in a large bowl until smooth.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <h4>Mix the Wet Ingredients</h4>
+                <p>To the mashed bananas, add ¾ cup sugar, ⅓ cup oil, 2 eggs, ½ cup sour cream, and 1 teaspoon vanilla extract. Whisk everything together until well combined and smooth. The batter should look creamy and cohesive.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <h4>Combine the Dry Ingredients</h4>
+                <p>In a separate bowl, whisk together 1½ cups all-purpose flour, 1 tablespoon cinnamon, 1 teaspoon baking soda, and ¼ teaspoon salt. The generous amount of cinnamon is intentional — it adds warmth and depth without overpowering the banana.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">4</div>
+              <div class="step-content">
+                <h4>Fold Together</h4>
+                <p>Add the dry ingredients to the wet ingredients and fold gently with a spatula until just combined — a few streaks of flour are fine. Do not overmix, as this will make the cupcakes tough.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">5</div>
+              <div class="step-content">
+                <h4>Fill & Top</h4>
+                <p>Divide the batter evenly between the 12 cupcake cases, filling each about ¾ full. Now comes the fun part: generously scatter the topping over each cupcake — ¼ cup coconut flakes, ½ cup chocolate chips, ½ cup dried cranberries, 2 tbsp flax seed, 1 tbsp Skor bits, and ½ cup sliced almonds divided among all cupcakes.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">6</div>
+              <div class="step-content">
+                <h4>Bake</h4>
+                <p>Bake at 350°F (175°C) for 30 minutes, until a skewer inserted in the centre comes out clean and the tops are golden. The coconut and almonds should be toasted and fragrant. Let cool in the tin for 5 minutes before transferring to a wire rack.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="tip-box">
+            <strong>💡 Candy's Tips</strong>
+            Use the blackest, most over-ripe bananas you can find — they make the most flavourful batter. The topping combination is generous by design; the different textures and flavours all balance each other beautifully. Don't skimp on the toppings.
+          </div>
+        </div>
+
+        <aside class="recipe-sidebar">
+          <div class="sidebar-card">
+            <h3>🛒 Wet Ingredients</h3>
+            <ul class="ingredient-list">
+              <li><span class="ing-name">Very ripe bananas</span><span class="ing-amount">3</span></li>
+              <li><span class="ing-name">Sugar</span><span class="ing-amount">¾ cup</span></li>
+              <li><span class="ing-name">Oil</span><span class="ing-amount">⅓ cup</span></li>
+              <li><span class="ing-name">Eggs</span><span class="ing-amount">2</span></li>
+              <li><span class="ing-name">Sour cream</span><span class="ing-amount">½ cup</span></li>
+              <li><span class="ing-name">Vanilla extract</span><span class="ing-amount">1 tsp</span></li>
+            </ul>
+          </div>
+
+          <div class="sidebar-card">
+            <h3>🌾 Dry Ingredients</h3>
+            <ul class="ingredient-list">
+              <li><span class="ing-name">All-purpose flour</span><span class="ing-amount">1½ cups</span></li>
+              <li><span class="ing-name">Cinnamon</span><span class="ing-amount">1 tbsp</span></li>
+              <li><span class="ing-name">Baking soda</span><span class="ing-amount">1 tsp</span></li>
+              <li><span class="ing-name">Salt</span><span class="ing-amount">¼ tsp</span></li>
+            </ul>
+          </div>
+
+          <div class="sidebar-card">
+            <h3>🍫 Topping</h3>
+            <ul class="ingredient-list">
+              <li><span class="ing-name">Coconut flakes</span><span class="ing-amount">¼ cup</span></li>
+              <li><span class="ing-name">Chocolate chips</span><span class="ing-amount">½ cup</span></li>
+              <li><span class="ing-name">Dried cranberries</span><span class="ing-amount">½ cup</span></li>
+              <li><span class="ing-name">Flax seed</span><span class="ing-amount">2 tbsp</span></li>
+              <li><span class="ing-name">Skor (toffee bits)</span><span class="ing-amount">1 tbsp</span></li>
+              <li><span class="ing-name">Sliced almonds</span><span class="ing-amount">½ cup</span></li>
+              <li><span class="ing-name">Walnuts or extra choc chips</span><span class="ing-amount">optional</span></li>
+            </ul>
+          </div>
+
+          <div class="sidebar-card">
+            <h3>📋 Quick Notes</h3>
+            <p><strong>Storage</strong> Store in an airtight container at room temp for 3 days, or freeze individually for up to 2 months.</p>
+            <p><strong>No Sour Cream?</strong> Full-fat Greek yoghurt is a perfect 1:1 substitute.</p>
+            <p><strong>Temperature</strong> 350°F / 175°C for 30 minutes. Start checking at 25 minutes as ovens vary.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- MANGO PUDDING RECIPE PAGE -->
+<div class="page-section" id="section-mango">
+  <div class="page-hero" style="background: linear-gradient(135deg,#fff3cd 0%,#fdf6f0 50%,#f9d4b8 100%)">
+    <div class="container">
+      <span class="page-hero-emoji">🍮</span>
+      <h1>Mango <em>Pudding</em></h1>
+      <p>Silky, bright, and bursting with mango — this simple gelatin pudding with whipping cream and a squeeze of lemon is pure tropical comfort.</p>
+    </div>
+  </div>
+
+  <section class="recipe-page">
+    <div class="container">
+      <div class="recipe-layout">
+        <div class="recipe-main">
+          <div class="recipe-intro">
+            <h2>About This Recipe</h2>
+            <p>Mango pudding holds a very special place in my heart. Every trip to yum cha (dim sum) with my family ended the same way — a wobbling pot of golden mango pudding shared between everyone at the table.</p>
+            <p>This version uses canned mango purée for consistent, intense flavour year-round, combined with whipping cream for richness and small chunks of fresh mango folded in for texture. A squeeze of lemon at the end brightens everything up perfectly.</p>
+            <p>The method is simple: bloom your gelatin, dissolve sugar in water, bring it all together, then chill. The hardest part really is waiting. Make it the night before a dinner party and you'll look like a hero.</p>
+          </div>
+
+          <div class="recipe-stats">
+            <div class="stat-box"><div class="stat-val">20</div><div class="stat-lbl">Min Active</div></div>
+            <div class="stat-box"><div class="stat-val">6</div><div class="stat-lbl">Servings</div></div>
+            <div class="stat-box"><div class="stat-val">★★★</div><div class="stat-lbl">Easy</div></div>
+            <div class="stat-box"><div class="stat-val">4h+</div><div class="stat-lbl">Chill Time</div></div>
+          </div>
+
+          <div class="recipe-steps">
+            <h3>Step-by-Step Instructions</h3>
+            <div class="step-item">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <h4>Bloom the Gelatin</h4>
+                <p>In a small bowl, sprinkle 6 tablespoons of gelatin powder over 1 cup of cold water. Stir briefly, then let sit for 5–10 minutes without disturbing until it becomes spongy and swollen. This is the blooming process.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <h4>Make the Sugar Syrup</h4>
+                <p>In a medium saucepan, combine 4 cups of water with 1 cup of sugar. Bring to a gentle heat, stirring until the sugar dissolves completely. Do not boil vigorously. Once the sugar is fully dissolved, remove from heat.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <h4>Dissolve the Gelatin</h4>
+                <p>Add the bloomed gelatin to the warm sugar syrup and stir gently until completely dissolved and the liquid is clear with no lumps. Remove from heat and allow to cool for a few minutes until it's warm but not hot.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">4</div>
+              <div class="step-content">
+                <h4>Add Mango Purée</h4>
+                <p>Stir in the full can of mango purée until completely combined. The mixture should turn a vivid golden-orange. Taste at this point — it should be intensely mango-flavoured and not overly sweet.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">5</div>
+              <div class="step-content">
+                <h4>Fold in Mango Bits & Cream</h4>
+                <p>Stir in 1 cup of whipping cream and gently fold in small diced fresh mango pieces for texture. Mix until uniform. Finally, squeeze in the juice of half a lemon and stir — this brightens the flavour beautifully.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">6</div>
+              <div class="step-content">
+                <h4>Pour, Set & Serve</h4>
+                <p>Pour the mixture through a fine sieve into individual ramekins, glasses, or moulds. Tap gently on the counter to release air bubbles. Cover with plastic wrap and refrigerate for at least 4 hours, or preferably overnight, until fully set.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="tip-box">
+            <strong>💡 Candy's Tips</strong>
+            The order matters here: water → sugar → gelatin → mango purée → mango pieces → whipping cream → lemon. Adding the cream and lemon last keeps the pudding from curdling. Don't skip the sieve step — it ensures a perfectly smooth, elegant pudding.
+          </div>
+        </div>
+
+        <aside class="recipe-sidebar">
+          <div class="sidebar-card">
+            <h3>🛒 Ingredients</h3>
+            <ul class="ingredient-list">
+              <li><span class="ing-name">Canned mango purée</span><span class="ing-amount">1 can</span></li>
+              <li><span class="ing-name">Whipping cream</span><span class="ing-amount">1 cup</span></li>
+              <li><span class="ing-name">Gelatin powder</span><span class="ing-amount">6 tbsp</span></li>
+              <li><span class="ing-name">Fresh mango (diced small)</span><span class="ing-amount">to taste</span></li>
+              <li><span class="ing-name">Water (for gelatin)</span><span class="ing-amount">1 cup</span></li>
+              <li><span class="ing-name">Water (for syrup)</span><span class="ing-amount">4 cups</span></li>
+              <li><span class="ing-name">Sugar</span><span class="ing-amount">1 cup</span></li>
+              <li><span class="ing-name">Lemon</span><span class="ing-amount">½ (juiced)</span></li>
+            </ul>
+          </div>
+
+          <div class="sidebar-card">
+            <h3>📋 Quick Notes</h3>
+            <p><strong>Storage</strong> Keep covered in the fridge for up to 3 days. The texture is best in the first 48 hours.</p>
+            <p><strong>Make-Ahead</strong> Perfect for dinner parties — make the day before and refrigerate overnight for best results.</p>
+            <p><strong>Serving Tip</strong> Serve cold, drizzled with a little extra whipping cream or condensed milk on top.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- EGG TART RECIPE PAGE -->
+<div class="page-section" id="section-eggs">
+  <div class="page-hero" style="background: linear-gradient(135deg,#fff8dc 0%,#fdf6f0 60%,#fce8b0 100%)">
+    <div class="container">
+      <span class="page-hero-emoji">🥧</span>
+      <h1>Chinese <em>Egg Tarts</em></h1>
+      <p>Silky, lightly sweet custard nestled in a golden pastry shell — a timeless classic straight from the dim sum cart to your kitchen.</p>
+    </div>
+  </div>
+
+  <section class="recipe-page">
+    <div class="container">
+      <div class="recipe-layout">
+        <div class="recipe-main">
+          <div class="recipe-intro">
+            <h2>About This Recipe</h2>
+            <p>Chinese egg tarts — or dàn tāt — are one of those recipes that carry so much memory in a single bite. A crumbly, golden pastry shell cradling a perfectly smooth, barely-sweet egg custard. Iconic. Essential. Life-changing.</p>
+            <p>This is my simple, home-friendly version that gets you there without a pastry degree. The custard itself is beautifully straightforward: sugar, a touch of condensed milk for a gentle caramel sweetness, and eggs.</p>
+            <p>The key to perfect egg tarts is patience — gentle heat to set the custard without bubbling, and a proper resting time after baking so everything firms up into that classic smooth, glossy finish.</p>
+          </div>
+
+          <div class="recipe-stats">
+            <div class="stat-box"><div class="stat-val">10</div><div class="stat-lbl">Min Prep</div></div>
+            <div class="stat-box"><div class="stat-val">8</div><div class="stat-lbl">Large Tarts</div></div>
+            <div class="stat-box"><div class="stat-val">★★★</div><div class="stat-lbl">Easy</div></div>
+            <div class="stat-box"><div class="stat-val">25</div><div class="stat-lbl">Min Bake</div></div>
+          </div>
+
+          <div class="recipe-steps">
+            <h3>Step-by-Step Instructions</h3>
+            <div class="step-item">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <h4>Preheat Your Oven</h4>
+                <p>Preheat your oven to 350°C. Set your egg tart moulds on a baking tray and have them ready to fill. Make sure your pastry shells are sitting snugly in the moulds before you pour the custard.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <h4>Dissolve the Sugar</h4>
+                <p>In a large bowl or jug, combine 150g of sugar with 250g of lukewarm water. Stir well until the sugar is completely dissolved — this is important, as undissolved sugar can cause grittiness in the final custard.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <h4>Mix in Condensed Milk & Eggs</h4>
+                <p>Stir in 1 heaped tablespoon of condensed milk until fully combined. In a separate bowl, lightly beat 3 eggs, then gently stir them into the sugar mixture. Avoid whisking vigorously — you want to incorporate the eggs without creating too much foam.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">4</div>
+              <div class="step-content">
+                <h4>Strain the Custard</h4>
+                <p>Pour the entire custard mixture through a fine mesh sieve into a clean jug. This removes any egg threads or lumps and is the single most important step for achieving that perfect silky texture.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">5</div>
+              <div class="step-content">
+                <h4>Fill the Tart Shells</h4>
+                <p>Carefully pour the strained custard into each pastry shell, filling to about 80–85% full — the custard will puff very slightly as it bakes. Pour slowly and steadily to avoid creating bubbles.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">6</div>
+              <div class="step-content">
+                <h4>Bake & Rest</h4>
+                <p>Carefully slide the tray into the oven and bake for 25 minutes, until the custard is just set with only the faintest wobble in the very centre and the pastry is golden at the edges. Cool completely in the moulds — do not unmould while hot.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="tip-box">
+            <strong>💡 Candy's Tips</strong>
+            Straining the custard and resting after baking are the two steps you must never skip — they're what separates a great egg tart from a good one. Lukewarm water (not hot) keeps the eggs from scrambling as you mix.
+          </div>
+        </div>
+
+        <aside class="recipe-sidebar">
+          <div class="sidebar-card">
+            <h3>🛒 Ingredients</h3>
+            <ul class="ingredient-list">
+              <li><span class="ing-name">Sugar</span><span class="ing-amount">150g</span></li>
+              <li><span class="ing-name">Lukewarm water</span><span class="ing-amount">250g</span></li>
+              <li><span class="ing-name">Condensed milk</span><span class="ing-amount">1 tbsp</span></li>
+              <li><span class="ing-name">Eggs, strained</span><span class="ing-amount">3</span></li>
+              <li><span class="ing-name">Egg tart pastry shells</span><span class="ing-amount">8 large</span></li>
+            </ul>
+          </div>
+
+          <div class="sidebar-card">
+            <h3>📋 Quick Notes</h3>
+            <p><strong>Storage</strong> Best enjoyed fresh and warm. Store leftovers covered in the fridge for up to 2 days. Reheat in a low oven at 150°C for 5–8 minutes to revive the pastry.</p>
+            <p><strong>Pastry Shells</strong> Ready-made egg tart shells are available at most Asian grocery stores and save a lot of time. Homemade shortcrust or flaky pastry shells also work beautifully.</p>
+            <p><strong>No Bubbles</strong> Pour slowly, don't whisk, and pop any surface bubbles with a toothpick before baking for the smoothest finish.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner container">
+    <div class="footer-brand">
+      <div class="script">Candy's Delights</div>
+      <p>Homemade dessert recipes, crafted with love.</p>
+    </div>
+    <nav>
+      <ul class="footer-links">
+        <li><a onclick="showSection('home')" style="cursor:pointer;">Home</a></li>
+        <li><a onclick="showSection('mochi')" style="cursor:pointer;">Mochi</a></li>
+        <li><a onclick="showSection('cookies')" style="cursor:pointer;">Cookies</a></li>
+        <li><a onclick="showSection('muffins')" style="cursor:pointer;">Muffins</a></li>
+        <li><a onclick="showSection('mango')" style="cursor:pointer;">Mango Pudding</a></li>
+        <li><a onclick="showSection('eggs')" style="cursor:pointer;">Egg Tarts</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-bottom container">
+    <p>© 2024 Candy's Delights. Made with 💕 and lots of butter.</p>
+    <div class="social-links">
+      <a href="#" aria-label="Instagram">📸</a>
+      <a href="#" aria-label="Pinterest">📌</a>
+      <a href="#" aria-label="YouTube">▶️</a>
+      <a href="#" aria-label="TikTok">🎵</a>
+    </div>
+  </div>
+</footer>
+
+<!-- MUSIC PLAYER -->
+<audio id="bg-music" src="Jade.mp3" loop preload="auto"></audio>
+
+<button id="music-toggle" aria-label="Toggle background music" title="Toggle music">
+  <span id="music-icon">🎵</span>
+  <span id="music-label">Music</span>
+</button>
+
+<script>
+  function showSection(sectionId) {
+    // Hide all sections
+    const sections = document.querySelectorAll('.page-section');
+    sections.forEach(section => section.classList.remove('active'));
+    
+    // Show selected section
+    const targetSection = document.getElementById(`section-${sectionId}`);
+    if (targetSection) {
+      targetSection.classList.add('active');
+      window.scrollTo(0, 0);
+    }
+    
+    // Update nav links
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => link.classList.remove('active'));
+  }
+
+  function scrollToRecipes() {
+    const recipesElement = document.getElementById('recipes');
+    if (recipesElement) {
+      recipesElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  function toggleMenu() {
+    // Mobile menu toggle
+    alert('Mobile menu feature - customize as needed');
+  }
+
+  // Music player functionality
+  (function () {
+    const audio = document.getElementById("bg-music");
+    const btn = document.getElementById("music-toggle");
+    const icon = document.getElementById("music-icon");
+    const label = document.getElementById("music-label");
+    let playing = false;
+
+    function setPlaying(on) {
+      playing = on;
+      if (on) {
+        audio.play();
+        btn.classList.add("playing");
+        icon.textContent = "🎶";
+        label.textContent = "Playing";
+      } else {
+        audio.pause();
+        btn.classList.remove("playing");
+        icon.textContent = "🎵";
+        label.textContent = "Music";
+      }
+    }
+
+    btn.addEventListener("click", () => setPlaying(!playing));
+
+    function tryAutoplay() {
+      setPlaying(true);
+      document.removeEventListener("click", tryAutoplay);
+      document.removeEventListener("keydown", tryAutoplay);
+      document.removeEventListener("touchstart", tryAutoplay);
+    }
+    document.addEventListener("click", tryAutoplay);
+    document.addEventListener("keydown", tryAutoplay);
+    document.addEventListener("touchstart", tryAutoplay);
+  })();
+</script>
+
+</body>
+</html>
