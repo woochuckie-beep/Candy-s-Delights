@@ -237,5 +237,97 @@
 </footer>
 
 <script src="js/main.js"></script>
+
+<!-- ✦ Background Music Player ✦ -->
+<audio id="bg-music" src="Jade.mp3" loop preload="auto"></audio>
+
+<button id="music-toggle" aria-label="Toggle background music" title="Toggle music">
+  <span id="music-icon">🎵</span>
+  <span id="music-label">Music</span>
+</button>
+
+<style>
+  #music-toggle {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #b5617a;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+  #music-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+    background: rgba(255, 255, 255, 0.97);
+  }
+  #music-toggle.playing {
+    background: linear-gradient(135deg, #f9d6e0, #fce8d5);
+  }
+  #music-icon {
+    font-size: 1rem;
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+  #music-toggle.playing #music-icon {
+    animation: spin-sway 3s ease-in-out infinite;
+  }
+  @keyframes spin-sway {
+    0%, 100% { transform: rotate(-10deg); }
+    50%       { transform: rotate(10deg); }
+  }
+</style>
+
+<script>
+(function () {
+  const audio  = document.getElementById("bg-music");
+  const btn    = document.getElementById("music-toggle");
+  const icon   = document.getElementById("music-icon");
+  const label  = document.getElementById("music-label");
+  let playing  = false;
+
+  function setPlaying(on) {
+    playing = on;
+    if (on) {
+      audio.play();
+      btn.classList.add("playing");
+      icon.textContent  = "🎶";
+      label.textContent = "Playing";
+    } else {
+      audio.pause();
+      btn.classList.remove("playing");
+      icon.textContent  = "🎵";
+      label.textContent = "Music";
+    }
+  }
+
+  btn.addEventListener("click", () => setPlaying(!playing));
+
+  // Auto-play on first user interaction with the page (browser policy)
+  function tryAutoplay() {
+    setPlaying(true);
+    document.removeEventListener("click",      tryAutoplay);
+    document.removeEventListener("keydown",    tryAutoplay);
+    document.removeEventListener("touchstart", tryAutoplay);
+  }
+  document.addEventListener("click",      tryAutoplay);
+  document.addEventListener("keydown",    tryAutoplay);
+  document.addEventListener("touchstart", tryAutoplay);
+})();
+</script>
+<!-- ✦ End Background Music Player ✦ -->
 </body>
 </html>
